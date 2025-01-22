@@ -2,6 +2,7 @@ import api from "@/lib/axios";
 import { isAxiosError } from "axios";
 import { Project, ProjectFormData } from "types";
 import { dashboardSchema } from "@/utils/schema-projects";
+import { handlerApiError } from "@/utils/utils";
 
 export const createProject = async (formData: ProjectFormData) => {
     try {
@@ -40,11 +41,7 @@ export const getProjectById = async (id: Project['_id']) => {
         return data
 
     } catch (error) {
-        if (isAxiosError(error) && error.response) {
-            throw new Error(error.response.data.error)
-        }
-
-        throw new Error('Error desconocido')
+        handlerApiError(error)
     }
 }
 
@@ -58,11 +55,7 @@ export const updateProject = async ({ formData, projectId }: ProjectAPIType) => 
         return data
 
     } catch (error) {
-        if (isAxiosError(error) && error.response) {
-            throw new Error(error.response.data.error)
-        }
-
-        throw new Error('Error desconocido')
+        handlerApiError(error)
     }
 }
 
@@ -72,10 +65,6 @@ export const deleteProjectById = async (id: Project['_id']) => {
         return data
 
     } catch (error) {
-        if (isAxiosError(error) && error.response) {
-            throw new Error(error.response.data.error)
-        }
-
-        throw new Error('Error desconocido')
+        handlerApiError(error)
     }
 }
