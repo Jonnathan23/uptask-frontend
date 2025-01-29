@@ -1,7 +1,7 @@
 import api from "@/lib/axios";
 import { Project, Task, TaskFormData } from "../types";
 import { isAxiosError } from "axios";
-import { TaskSchema } from "@/utils/schema-tasks";
+import { TaskSchema } from "@/utils/tasks.schema";
 type CreateTasktType = {
     formData: TaskFormData
     projectId: Project['_id']

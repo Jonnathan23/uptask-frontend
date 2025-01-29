@@ -1,7 +1,7 @@
 import { z } from "zod";
-import { projectSchema } from "utils/schema-projects";
-import { TaskSchema, tastkStatusSchema } from "@/utils/schema-tasks";
-import { authSchema } from "@/utils/schema-auth";
+import { projectSchema } from "utils/projects.schema";
+import { TaskSchema, tastkStatusSchema } from "@/utils/tasks.schema";
+import { authSchema } from "@/utils/auth.schema";
 
 //* |--------| | Projects | |--------| */
 
@@ -18,4 +18,9 @@ export type TaskStatus = z.infer<typeof tastkStatusSchema>
 //* |--------| | Auth | |--------| */
 export type Auth = z.infer<typeof authSchema>
 export type UserLoginForm = Pick<Auth, "email" | "password">
-export type UserRegistrationForm = Pick<Auth, 'name' |"email" | "password" | 'password_confirmation'>
+export type UserRegistrationForm = Pick<Auth, 'name' | "email" | "password" | 'password_confirmation'>
+export type RequestConfirmationCodeForm = Pick<Auth, "email">
+export type ForgotPasswordForm = Pick<Auth, "email">
+export type NewPasswordForm = Pick<Auth, "password" | "password_confirmation">
+
+export type ConfirmToken = Pick<Auth, 'token'>

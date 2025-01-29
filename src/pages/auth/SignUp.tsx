@@ -143,6 +143,12 @@ export default function SignUp() {
                 >
                     ¿Ya tienes una cuenta? Inicia Sesión
                 </Link>
+                <Link
+                    className="text-center text-gray-300 font-normal"
+                    to={'/auth/forgot-password'}
+                >
+                    ¿Olvidaste tu contraseña? Restablecela
+                </Link>
             </nav>
         </>
     )

@@ -7,6 +7,10 @@ import ProjectDetails from "./pages/projects/ProjectDetails";
 import AuthLayout from "./layouts/AuthLayout";
 import Login from "./pages/auth/Login";
 import SignUp from "./pages/auth/SignUp";
+import ConfirmAccount from "./pages/auth/ConfirmAccount";
+import RequestNewCode from "./pages/auth/RequestNewCode";
+import ForgotPassword from "./pages/auth/ForgotPassword";
+import NewPassword from "./pages/auth/NewPassword";
 
 export default function Router() {
     return (
@@ -20,8 +24,12 @@ export default function Router() {
                 </Route>
 
                 <Route element={<AuthLayout />}>
-                <Route path="/auth/login" element={<Login />} />
-                <Route path="/auth/register" element={<SignUp />} />
+                    <Route path="/auth/login" element={<Login />} />
+                    <Route path="/auth/register" element={<SignUp />} />
+                    <Route path="/auth/confirm-account" element={<ConfirmAccount />} />
+                    <Route path="/auth/request-code" element={<RequestNewCode />} />
+                    <Route path="/auth/forgot-password" element={<ForgotPassword />} />
+                    <Route path="/auth/new-password" element={<NewPassword />} />
                 </Route>
             </Routes>
         </BrowserRouter>
