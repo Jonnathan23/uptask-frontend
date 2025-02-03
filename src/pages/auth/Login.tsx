@@ -17,8 +17,8 @@ export default function Login() {
     const { mutate } = useMutation({
         mutationFn: authenticateUser,
         onError: (error) => toast.error(error.message),
-        onSuccess: (data) => {
-            toast.success(data)
+        onSuccess: () => {
+            toast.success('Inciando sesion...')
 
         }
     })

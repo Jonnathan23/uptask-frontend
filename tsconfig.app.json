@@ -16,6 +16,7 @@
       "@/lib/*": ["lib/*"],
       "@/utils/*": ["utils/*"],
       "@/data/*": ["data/*"],
+      "@/hooks/*": ["hooks/*"],
     },
 
     /* Bundler mode */
