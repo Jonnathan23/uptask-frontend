@@ -1,6 +1,7 @@
 import { handlerApiError } from "@/utils/utils";
-import { ConfirmToken, ForgotPasswordForm, NewPasswordForm, RequestConfirmationCodeForm, UserLoginForm, UserRegistrationForm } from "../types";
+import { ConfirmToken, ForgotPasswordForm, NewPasswordForm, RequestConfirmationCodeForm, User, UserLoginForm, UserRegistrationForm } from "../types";
 import api from "@/lib/axios";
+import { userSchema } from "@/utils/auth.schema";
 
 
 export async function createAccount(formData: UserRegistrationForm) {
@@ -82,9 +83,11 @@ export const updatePasswordWithToken = async ({ formData, token }: { formData: N
 
 export const getUser = async () => {
     try {
-        const { data } = await api.get('/auth/user')
-        console.log(data)
-        return data
+        const { data } = await api.get('/auth/user')        
+        const response = userSchema.safeParse(data)        
+        if (response.success) {
+            return response.data
+        }
     } catch (error) {
         handlerApiError(error)
     }
