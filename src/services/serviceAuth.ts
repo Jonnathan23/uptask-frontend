@@ -1,5 +1,5 @@
 import { handlerApiError } from "@/utils/utils";
-import { ConfirmToken, ForgotPasswordForm, NewPasswordForm, RequestConfirmationCodeForm, User, UserLoginForm, UserRegistrationForm } from "../types";
+import { ConfirmToken, ForgotPasswordForm, NewPasswordForm, RequestConfirmationCodeForm, UserLoginForm, UserRegistrationForm } from "../types";
 import api from "@/lib/axios";
 import { userSchema } from "@/utils/auth.schema";
 

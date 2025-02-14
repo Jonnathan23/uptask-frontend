@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { UserLoginForm } from "@/types/index";
 import ErrorMessage from "@/components/ErrorMessage";
 import { Link, useNavigate } from "react-router-dom";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { authenticateUser } from "@/services/serviceAuth";
 import { toast } from "react-toastify";
 
@@ -15,11 +15,14 @@ export default function Login() {
     const { register, handleSubmit, formState: { errors } } = useForm({ defaultValues: initialValues })
     const navigate = useNavigate();
 
+    const queryClient = useQueryClient();
+
     const { mutate } = useMutation({
         mutationFn: authenticateUser,
-        onError: (error) => toast.error(error.message),
+        onError: (error) => toast.error(error.message || 'Error con el servidor, intentelo más tarde'),
         onSuccess: () => {
             toast.success('Inciando sesion...')
+            queryClient.invalidateQueries({queryKey: ['user']})
             navigate('/')            
         }
     })
