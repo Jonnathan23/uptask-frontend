@@ -4,7 +4,7 @@ import TaskList from "@/components/tasks/TaskList";
 import TaskModalDetails from "@/components/tasks/TaskModalDetails";
 import { getProjectById } from "@/services/serviceProject";
 import { useQuery } from "@tanstack/react-query";
-import { Navigate, useLocation, useNavigate, useParams, } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate, useParams, } from "react-router-dom";
 
 export default function ProjectDetails() {
 
@@ -34,6 +34,10 @@ export default function ProjectDetails() {
                 >
                     Agregar Tarea
                 </button>
+                <Link
+                    to={'team'}
+                    className="bg-fuchsia-600 hover:bg-fuchsia-700 px-10 py-3 text-white text-xl font-bold cursor-pointer transition-colors"
+                >Colaboradores</Link>
             </nav>
 
             <AddTaskModal />

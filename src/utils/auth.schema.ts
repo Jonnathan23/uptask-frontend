@@ -1,4 +1,4 @@
-import { object, string } from "zod"
+import { array, object, string } from "zod"
 
 export const authSchema = object({
     name: string(),
@@ -11,3 +11,6 @@ export const authSchema = object({
 export const userSchema = authSchema.pick({ name: true, email: true }).extend({
     _id: string()
 })
+
+export const teamMemberSchema = userSchema.pick({ name: true, email: true, _id: true })
+export const teamMembersSchema = array(teamMemberSchema)

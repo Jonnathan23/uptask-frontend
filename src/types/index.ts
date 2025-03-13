@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { projectSchema } from "utils/projects.schema";
 import { TaskSchema, tastkStatusSchema } from "@/utils/tasks.schema";
-import { authSchema, userSchema } from "@/utils/auth.schema";
+import { authSchema, teamMemberSchema, userSchema } from "@/utils/auth.schema";
 
 //* |--------| | Projects | |--------| */
 
@@ -27,3 +27,7 @@ export type ForgotPasswordForm = Pick<Auth, "email">
 export type NewPasswordForm = Pick<Auth, "password" | "password_confirmation">
 
 export type ConfirmToken = Pick<Auth, 'token'>
+
+//* |--------| | Team | |--------| */
+export type TeamMember = z.infer<typeof teamMemberSchema>
+export type TeamMemberForm = Pick<TeamMember, 'email'>

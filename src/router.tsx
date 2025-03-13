@@ -11,6 +11,7 @@ import ConfirmAccount from "./pages/auth/ConfirmAccount";
 import RequestNewCode from "./pages/auth/RequestNewCode";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import NewPassword from "./pages/auth/NewPassword";
+import ProjectTeam from "./pages/projects/ProjectTeam";
 
 export default function Router() {
     return (
@@ -21,6 +22,7 @@ export default function Router() {
                     <Route path="/projects/create" element={<CreateProject />} />
                     <Route path="/projects/:projectId" element={<ProjectDetails />} />
                     <Route path="/projects/:projectId/edit" element={<EditProject />} />
+                    <Route path="/projects/:projectId/team" element={<ProjectTeam />} />
                 </Route>
 
                 <Route element={<AuthLayout />}>
