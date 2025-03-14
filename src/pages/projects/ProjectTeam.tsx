@@ -1,10 +1,11 @@
 import AddMemberModal from "@/components/team/AddMemberModal";
 import { getProjectTeam, removeUserFromProject } from "@/services/serviceTeam";
 import { Menu, Transition } from "@headlessui/react";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Fragment } from "react";
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { EllipsisVerticalIcon } from "@heroicons/react/20/solid";
+import { toast } from "react-toastify";
 
 
 export default function ProjectTeam() {
@@ -18,8 +19,15 @@ export default function ProjectTeam() {
         retry: false
     })
 
-    const { mutate } = useMutation({
+    const queryClient = useQueryClient()
+
+    const { mutate, isPending } = useMutation({
         mutationFn: removeUserFromProject,
+        onError: (error) => toast.error(error.message),
+        onSuccess: (data) => {
+            toast.success(data)
+            queryClient.invalidateQueries({ queryKey: ['projectTeam', projectId] })
+        }
     })
 
     if (isLoading) return <p>Cargando...</p>
@@ -77,6 +85,8 @@ export default function ProjectTeam() {
                                                 <button
                                                     type='button'
                                                     className='block px-3 py-1 text-sm leading-6 text-red-500'
+                                                    onClick={() => mutate({ projectId, userId: member._id })}
+                                                    disabled={isPending}
                                                 >
                                                     Eliminar del Proyecto
                                                 </button>
